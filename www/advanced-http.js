@@ -85,6 +85,7 @@ var publicInterface = {
       case 'post':
       case 'put':
       case 'patch':
+      case 'options':
         var data = helpers.getProcessedData(options.data, options.serializer);
         return exec(onSuccess, onFail, 'CordovaHttpPlugin', options.method, [ url, data, options.serializer, headers, options.timeout ]);
       case 'upload':
@@ -107,6 +108,9 @@ var publicInterface = {
   },
   patch: function (url, data, headers, success, failure) {
     return publicInterface.sendRequest(url, { method: 'patch', data: data, headers: headers }, success, failure);
+  },
+  options: function (url, data, headers, success, failure) {
+    return publicInterface.sendRequest(url, { method: 'options', data: data, headers: headers }, success, failure);
   },
   delete: function (url, params, headers, success, failure) {
     return publicInterface.sendRequest(url, { method: 'delete', params: params, headers: headers }, success, failure);
